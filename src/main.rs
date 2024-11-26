@@ -13,7 +13,7 @@ fn main() {
     // gen_range a range expression as an argument and generates random number in the range
     let secret_number = rand::thread_rng().gen_range(1..200);
 
-    println!("The secret number is: {}", secret_number);
+    // println!("The secret number is: {}", secret_number);
     // loop keyword created an infinite loop
     loop {
         println!("Please input your guess.");
@@ -42,15 +42,25 @@ fn main() {
         // trim method eliminates \n or \r\n resulting in just 5
         // SUMMARY parse method on string converts a string to another type
         // the colon (:) after guess tells rust we'll annotate the variable type
-        let guess: u32 = guess.trim().parse().expect("Please type a number!");
-
+        // let guess: u32 = guess.trim().parse().expect("Please type a number!");
+        // ok(num) => num is if parsing success num return into var guess
+        // err(_) => if parsing failed next to iterating in loop
+        // underscore _ is a catchall value
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
         println!("You guessed: {guess}");
         // match expression to decide what to do next based on which variant of Ordering
 
         match guess.cmp(&secret_number) {
             Ordering::Less => println!("Too small!"),
-            Ordering::Equal => println!("You win!"),
             Ordering::Greater => println!("Too big!"),
+            Ordering::Equal => {
+                println!("You win!");
+            //adding break after 'You win!' make program exit loop
+            break;
+            }
         }
     }
 }
