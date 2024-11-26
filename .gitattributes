@@ -1,6 +1,2 @@
-# Auto detect text files and perform normalization
-*          text=auto
-
-*.rs       text diff=rust
-*.toml     text diff=toml
-Cargo.lock text
+# Example of a `.gitattributes` file which reclassifies `.rb` files as Java:
+*.rs linguist-language=RUST
