@@ -1,0 +1,16 @@
+# Pastikan semua file Rust dihitung sebagai bagian dari bahasa utama
+*.rs linguist-detectable=true
+
+# Anggap file Cargo.toml dan Cargo.lock sebagai konfigurasi, bukan kode
+Cargo.toml linguist-language=Rust
+Cargo.lock linguist-generated=true
+
+# Jika ada direktori build atau target, abaikan dari perhitungan
+/target/** linguist-vendored
+
+# Dokumentasi dan file non-kode lainnya
+*.md linguist-documentation
+*.txt linguist-documentation
+
+# Abaikan file di direktori `vendor` jika menggunakan crate yang di-*vendoring*
+/vendor/** linguist-vendored
